@@ -1,5 +1,3 @@
-/* @flow */
-
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import StyledText from './StyledText';
@@ -43,5 +41,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 30,
     marginVertical: 2,
+    letterSpacing: 0.15,
   },
 });

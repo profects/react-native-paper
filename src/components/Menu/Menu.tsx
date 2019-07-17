@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 import { withTheme } from '../../core/theming';
-import { Theme } from '../../types';
+import { Theme, $Omit } from '../../types';
 import Portal from '../Portal/Portal';
 import Surface from '../Surface';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -54,7 +54,7 @@ type Props = {
   theme: Theme;
 };
 
-type Layout = Omit<Omit<LayoutRectangle, 'x'>, 'y'>;
+type Layout = $Omit<$Omit<LayoutRectangle, 'x'>, 'y'>;
 
 type State = {
   rendered: boolean;
@@ -262,7 +262,7 @@ class Menu extends React.Component<Props, State> {
       !anchorLayout.width ||
       !anchorLayout.height
     ) {
-      setTimeout(this._show, ANIMATION_DURATION);
+      requestAnimationFrame(this._show);
       return;
     }
 
@@ -286,16 +286,17 @@ class Menu extends React.Component<Props, State> {
       () => {
         this._attachListeners();
 
+        const { animation } = this.props.theme;
         Animated.parallel([
           Animated.timing(this.state.scaleAnimation, {
             toValue: { x: menuLayout.width, y: menuLayout.height },
-            duration: ANIMATION_DURATION,
+            duration: ANIMATION_DURATION * animation.scale,
             easing: EASING,
             useNativeDriver: true,
           }),
           Animated.timing(this.state.opacityAnimation, {
             toValue: 1,
-            duration: ANIMATION_DURATION,
+            duration: ANIMATION_DURATION * animation.scale,
             easing: EASING,
             useNativeDriver: true,
           }),
@@ -311,9 +312,10 @@ class Menu extends React.Component<Props, State> {
   _hide = () => {
     this._removeListeners();
 
+    const { animation } = this.props.theme;
     Animated.timing(this.state.opacityAnimation, {
       toValue: 0,
-      duration: ANIMATION_DURATION,
+      duration: ANIMATION_DURATION * animation.scale,
       easing: EASING,
       useNativeDriver: true,
     }).start(finished => {
@@ -473,6 +475,7 @@ class Menu extends React.Component<Props, State> {
               collapsable={false}
               accessibilityViewIsModal={visible}
               style={[styles.wrapper, positionStyle, style]}
+              pointerEvents={visible ? 'box-none' : 'none'}
             >
               <Animated.View style={{ transform: positionTransforms }}>
                 <Surface

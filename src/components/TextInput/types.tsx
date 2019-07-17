@@ -1,5 +1,6 @@
 import { TextInput as NativeTextInput, Animated } from 'react-native';
 import { TextInputProps } from './TextInput';
+import { $Omit } from './../../types';
 
 export type RenderProps = {
   ref: (a: NativeTextInput | null | undefined) => void;
@@ -17,7 +18,7 @@ export type RenderProps = {
   value?: string;
   adjustsFontSizeToFit?: boolean;
 };
-type TextInputTypesWithoutMode = Omit<TextInputProps, 'mode'>;
+type TextInputTypesWithoutMode = $Omit<TextInputProps, 'mode'>;
 export type State = {
   labeled: Animated.Value;
   error: Animated.Value;
@@ -37,7 +38,7 @@ export type ChildTextInputProps = {
 export type LabelProps = {
   mode?: 'flat' | 'outlined';
   placeholderStyle: any;
-  placeholderOpacity: number | Animated.Value;
+  placeholderOpacity: number | Animated.Value | Animated.AnimatedInterpolation;
   baseLabelTranslateX: number;
   baseLabelTranslateY: number;
   wiggleOffsetX: number;
