@@ -33,7 +33,7 @@
     "typescript": "tsc --noEmit",
     "lint": "eslint --ext '.js,.ts,.tsx' .",
     "test": "jest",
-    "prepare": "bob build && node ./scripts/generate-mappings.js",
+    "prepare": "bob build",
     "release": "release-it",
     "bootstrap": "yarn --cwd example && yarn --cwd docs && yarn",
     "docs": "yarn --cwd docs",
