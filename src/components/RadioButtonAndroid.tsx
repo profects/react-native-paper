@@ -89,7 +89,7 @@ class RadioButtonAndroid extends React.Component<Props, State> {
   }
 
   render() {
-    const { disabled, onPress, theme, ...rest } = this.props;
+    const { disabled, onPress, theme, style, ...rest } = this.props;
     const checkedColor = this.props.color || theme.colors.accent;
     const uncheckedColor =
       this.props.uncheckedColor ||
@@ -135,7 +135,7 @@ class RadioButtonAndroid extends React.Component<Props, State> {
         accessibilityRole="button"
         accessibilityStates={disabled ? ['disabled'] : undefined}
         accessibilityLiveRegion="polite"
-        style={styles.container}
+        style={[styles.container, style]}
       >
         <Animated.View
           style={[
