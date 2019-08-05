@@ -78,7 +78,7 @@ class CheckboxAndroid extends React.Component<Props, State> {
   }
 
   render() {
-    const { status, disabled, onPress, theme, ...rest } = this.props;
+    const { status, disabled, onPress, theme, style, ...rest } = this.props;
     const checked = status === 'checked';
     const indeterminate = status === 'indeterminate';
     const checkedColor = this.props.color || theme.colors.accent;
@@ -128,7 +128,7 @@ class CheckboxAndroid extends React.Component<Props, State> {
         accessibilityRole="button"
         accessibilityStates={disabled ? ['disabled'] : []}
         accessibilityLiveRegion="polite"
-        style={styles.container}
+        style={[styles.container, style]}
       >
         <Animated.View style={{ transform: [{ scale: this.state.scaleAnim }] }}>
           <Icon
