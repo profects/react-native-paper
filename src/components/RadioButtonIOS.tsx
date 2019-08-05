@@ -90,14 +90,14 @@ class RadioButtonIOS extends React.Component<Props> {
           checked ? 'radiobutton_checked' : 'radiobutton_unchecked'
         }
         accessibilityRole="button"
-        accessibilityStates={disabled ? ['disabled'] : undefined}
+        accessibilityStates={disabled ? ['disabled'] : []}
         accessibilityLiveRegion="polite"
         style={styles.container}
       >
         <View style={{ opacity: checked ? 1 : 0 }}>
           <Icon
             allowFontScaling={false}
-            source="done"
+            source="check"
             size={24}
             color={checkedColor}
           />

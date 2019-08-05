@@ -70,7 +70,7 @@ class CheckboxIOS extends React.Component<Props> {
         .string();
     }
 
-    const icon = indeterminate ? 'remove' : 'done';
+    const icon = indeterminate ? 'minus' : 'check';
 
     return (
       <TouchableRipple
@@ -82,7 +82,7 @@ class CheckboxIOS extends React.Component<Props> {
         accessibilityTraits={disabled ? ['button', 'disabled'] : 'button'}
         accessibilityComponentType="button"
         accessibilityRole="button"
-        accessibilityStates={disabled ? ['disabled'] : undefined}
+        accessibilityStates={disabled ? ['disabled'] : []}
         accessibilityLiveRegion="polite"
         style={styles.container}
       >

@@ -18,6 +18,7 @@ exports[`renders DrawerItem with icon 1`] = `
 >
   <View
     accessibilityRole="button"
+    accessibilityStates={Array []}
     accessible={true}
     isTVSelectable={true}
     onResponderGrant={[Function]}
@@ -70,7 +71,7 @@ exports[`renders DrawerItem with icon 1`] = `
               },
             ],
             Object {
-              "fontFamily": "Material Icons",
+              "fontFamily": "Material Design Icons",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
@@ -78,7 +79,7 @@ exports[`renders DrawerItem with icon 1`] = `
           ]
         }
       >
-        
+        
       </Text>
       <Text
         numberOfLines={1}
@@ -187,7 +188,7 @@ exports[`renders active DrawerItem 1`] = `
               },
             ],
             Object {
-              "fontFamily": "Material Icons",
+              "fontFamily": "Material Design Icons",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
@@ -195,7 +196,7 @@ exports[`renders active DrawerItem 1`] = `
           ]
         }
       >
-        
+        
       </Text>
       <Text
         numberOfLines={1}
@@ -247,6 +248,7 @@ exports[`renders basic DrawerItem 1`] = `
 >
   <View
     accessibilityRole="button"
+    accessibilityStates={Array []}
     accessible={true}
     isTVSelectable={true}
     onResponderGrant={[Function]}

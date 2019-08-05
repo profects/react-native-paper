@@ -80,7 +80,7 @@ type State = {
  *   <FAB
  *     style={styles.fab}
  *     small
- *     icon="add"
+ *     icon="plus"
  *     onPress={() => console.log('Pressed')}
  *   />
  * );
@@ -164,7 +164,7 @@ class FAB extends React.Component<Props, State> {
         .rgb()
         .string();
     } else {
-      foregroundColor = !color(backgroundColor).light()
+      foregroundColor = !color(backgroundColor).isLight()
         ? white
         : 'rgba(0, 0, 0, .54)';
     }
@@ -204,7 +204,7 @@ class FAB extends React.Component<Props, State> {
           accessibilityTraits={disabled ? ['button', 'disabled'] : 'button'}
           accessibilityComponentType="button"
           accessibilityRole="button"
-          accessibilityStates={disabled ? ['disabled'] : undefined}
+          accessibilityStates={disabled ? ['disabled'] : []}
           style={styles.touchable}
         >
           <View

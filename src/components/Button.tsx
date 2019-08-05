@@ -100,7 +100,7 @@ type State = {
  * import { Button } from 'react-native-paper';
  *
  * const MyComponent = () => (
- *   <Button icon="add-a-photo" mode="contained" onPress={() => console.log('Pressed')}>
+ *   <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
  *     Press me
  *   </Button>
  * );
@@ -199,7 +199,7 @@ class Button extends React.Component<Props, State> {
         isDark =
           backgroundColor === 'transparent'
             ? false
-            : !color(backgroundColor).light();
+            : !color(backgroundColor).isLight();
       }
 
       textColor = isDark ? white : black;
@@ -245,7 +245,7 @@ class Button extends React.Component<Props, State> {
           accessibilityTraits={disabled ? ['button', 'disabled'] : 'button'}
           accessibilityComponentType="button"
           accessibilityRole="button"
-          accessibilityStates={disabled ? ['disabled'] : undefined}
+          accessibilityStates={disabled ? ['disabled'] : []}
           disabled={disabled}
           rippleColor={rippleColor}
           style={touchableStyle}

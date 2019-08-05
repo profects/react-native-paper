@@ -111,10 +111,10 @@ class CheckboxAndroid extends React.Component<Props, State> {
     });
 
     const icon = indeterminate
-      ? 'indeterminate-check-box'
+      ? 'minus-box'
       : checked
-      ? 'check-box'
-      : 'check-box-outline-blank';
+      ? 'checkbox-marked'
+      : 'checkbox-blank-outline';
 
     return (
       <TouchableRipple
@@ -126,7 +126,7 @@ class CheckboxAndroid extends React.Component<Props, State> {
         accessibilityTraits={disabled ? ['button', 'disabled'] : 'button'}
         accessibilityComponentType="button"
         accessibilityRole="button"
-        accessibilityStates={disabled ? ['disabled'] : undefined}
+        accessibilityStates={disabled ? ['disabled'] : []}
         accessibilityLiveRegion="polite"
         style={styles.container}
       >
