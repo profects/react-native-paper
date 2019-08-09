@@ -90,7 +90,7 @@ class MenuItem extends React.Component<Props> {
             pointerEvents="none"
           >
             <Text
-              numberOfLines={2}
+              numberOfLines={1}
               style={[styles.title, { color: titleColor }]}
             >
               {title}
@@ -116,7 +116,7 @@ class MenuItem extends React.Component<Props> {
 }
 
 const minWidth = 112;
-const maxWidth = 350;
+const maxWidth = 300;
 const iconWidth = 40;
 
 const styles = StyleSheet.create({
