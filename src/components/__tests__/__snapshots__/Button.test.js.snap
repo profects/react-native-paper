@@ -68,6 +68,9 @@ exports[`renders button with color 1`] = `
               },
               undefined,
               Object {
+                "textTransform": "uppercase",
+              },
+              Object {
                 "color": "#e91e63",
                 "fontFamily": "System",
                 "fontWeight": "500",
@@ -76,11 +79,12 @@ exports[`renders button with color 1`] = `
                 "fontFamily": "System",
                 "fontWeight": "500",
               },
+              undefined,
             ],
           ]
         }
       >
-        CUSTOM BUTTON
+        Custom Button
       </Text>
     </View>
   </View>
@@ -199,6 +203,9 @@ exports[`renders button with icon 1`] = `
               },
               undefined,
               Object {
+                "textTransform": "uppercase",
+              },
+              Object {
                 "color": "#6200ee",
                 "fontFamily": "System",
                 "fontWeight": "500",
@@ -207,11 +214,12 @@ exports[`renders button with icon 1`] = `
                 "fontFamily": "System",
                 "fontWeight": "500",
               },
+              undefined,
             ],
           ]
         }
       >
-        ICON BUTTON
+        Icon Button
       </Text>
     </View>
   </View>
@@ -293,6 +301,9 @@ exports[`renders contained contained with mode 1`] = `
               },
               undefined,
               Object {
+                "textTransform": "uppercase",
+              },
+              Object {
                 "color": "#ffffff",
                 "fontFamily": "System",
                 "fontWeight": "500",
@@ -301,11 +312,12 @@ exports[`renders contained contained with mode 1`] = `
                 "fontFamily": "System",
                 "fontWeight": "500",
               },
+              undefined,
             ],
           ]
         }
       >
-        CONTAINED BUTTON
+        Contained Button
       </Text>
     </View>
   </View>
@@ -384,6 +396,9 @@ exports[`renders disabled button 1`] = `
               },
               undefined,
               Object {
+                "textTransform": "uppercase",
+              },
+              Object {
                 "color": "rgba(0, 0, 0, 0.32)",
                 "fontFamily": "System",
                 "fontWeight": "500",
@@ -392,11 +407,12 @@ exports[`renders disabled button 1`] = `
                 "fontFamily": "System",
                 "fontWeight": "500",
               },
+              undefined,
             ],
           ]
         }
       >
-        DISABLED BUTTON
+        Disabled Button
       </Text>
     </View>
   </View>
@@ -654,6 +670,9 @@ exports[`renders loading button 1`] = `
               },
               undefined,
               Object {
+                "textTransform": "uppercase",
+              },
+              Object {
                 "color": "#6200ee",
                 "fontFamily": "System",
                 "fontWeight": "500",
@@ -662,11 +681,12 @@ exports[`renders loading button 1`] = `
                 "fontFamily": "System",
                 "fontWeight": "500",
               },
+              undefined,
             ],
           ]
         }
       >
-        LOADING BUTTON
+        Loading Button
       </Text>
     </View>
   </View>
@@ -741,6 +761,9 @@ exports[`renders outlined button with mode 1`] = `
               },
               undefined,
               Object {
+                "textTransform": "uppercase",
+              },
+              Object {
                 "color": "#6200ee",
                 "fontFamily": "System",
                 "fontWeight": "500",
@@ -749,11 +772,12 @@ exports[`renders outlined button with mode 1`] = `
                 "fontFamily": "System",
                 "fontWeight": "500",
               },
+              undefined,
             ],
           ]
         }
       >
-        OUTLINED BUTTON
+        Outlined Button
       </Text>
     </View>
   </View>
@@ -828,6 +852,9 @@ exports[`renders text button by default 1`] = `
               },
               undefined,
               Object {
+                "textTransform": "uppercase",
+              },
+              Object {
                 "color": "#6200ee",
                 "fontFamily": "System",
                 "fontWeight": "500",
@@ -836,11 +863,12 @@ exports[`renders text button by default 1`] = `
                 "fontFamily": "System",
                 "fontWeight": "500",
               },
+              undefined,
             ],
           ]
         }
       >
-        TEXT BUTTON
+        Text Button
       </Text>
     </View>
   </View>
@@ -915,6 +943,9 @@ exports[`renders text button with mode 1`] = `
               },
               undefined,
               Object {
+                "textTransform": "uppercase",
+              },
+              Object {
                 "color": "#6200ee",
                 "fontFamily": "System",
                 "fontWeight": "500",
@@ -923,11 +954,12 @@ exports[`renders text button with mode 1`] = `
                 "fontFamily": "System",
                 "fontWeight": "500",
               },
+              undefined,
             ],
           ]
         }
       >
-        TEXT BUTTON
+        Text Button
       </Text>
     </View>
   </View>
