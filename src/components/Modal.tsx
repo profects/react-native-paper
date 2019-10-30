@@ -45,6 +45,8 @@ type State = {
   rendered: boolean;
 };
 
+const DEFAULT_DURATION = 220;
+
 /**
  * The Modal component is a simple way to present content above an enclosing view.
  * To render the `Modal` above other components, you'll need to wrap it with the [`Portal`](portal.html) component.
@@ -108,59 +110,57 @@ class Modal extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Props) {
     if (prevProps.visible !== this.props.visible) {
       if (this.props.visible) {
-        this._showModal();
+        this.showModal();
       } else {
-        this._hideModal();
+        this.hideModal();
       }
     }
   }
 
-  _handleBack = () => {
+  private handleBack = () => {
     if (this.props.dismissable) {
-      this._hideModal();
+      this.hideModal();
     }
     return true;
   };
 
-  _showModal = () => {
-    const {
-      theme: {
-        animation: { scale },
-      },
-    } = this.props;
+  private showModal = () => {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBack);
+    BackHandler.addEventListener('hardwareBackPress', this.handleBack);
 
-    BackHandler.removeEventListener('hardwareBackPress', this._handleBack);
-    BackHandler.addEventListener('hardwareBackPress', this._handleBack);
-    Animated.timing(this.state.opacity, {
+    const { opacity } = this.state;
+    const { scale } = this.props.theme.animation;
+
+    Animated.timing(opacity, {
       toValue: 1,
-      duration: scale * 280,
-      easing: Easing.ease,
+      duration: scale * DEFAULT_DURATION,
+      easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start();
   };
 
-  _hideModal = () => {
-    const {
-      theme: {
-        animation: { scale },
-      },
-    } = this.props;
+  private hideModal = () => {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBack);
 
-    BackHandler.removeEventListener('hardwareBackPress', this._handleBack);
-    Animated.timing(this.state.opacity, {
+    const { opacity } = this.state;
+    const { scale } = this.props.theme.animation;
+
+    Animated.timing(opacity, {
       toValue: 0,
-      duration: scale * 280,
-      easing: Easing.ease,
+      duration: scale * DEFAULT_DURATION,
+      easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
     }).start(({ finished }) => {
       if (!finished) {
         return;
       }
+
       if (this.props.visible && this.props.onDismiss) {
         this.props.onDismiss();
       }
+
       if (this.props.visible) {
-        this._showModal();
+        this.showModal();
       } else {
         this.setState({
           rendered: false,
@@ -170,11 +170,13 @@ class Modal extends React.Component<Props, State> {
   };
 
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this._handleBack);
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBack);
   }
 
   render() {
-    if (!this.state.rendered) return null;
+    const { rendered, opacity } = this.state;
+
+    if (!rendered) return null;
 
     const { children, dismissable, theme, contentContainerStyle } = this.props;
     const { colors } = theme;
@@ -186,23 +188,21 @@ class Modal extends React.Component<Props, State> {
         style={StyleSheet.absoluteFill}
       >
         <TouchableWithoutFeedback
-          onPress={dismissable ? this._hideModal : undefined}
+          onPress={dismissable ? this.hideModal : undefined}
         >
           <Animated.View
             style={[
               styles.backdrop,
-              { backgroundColor: colors.backdrop, opacity: this.state.opacity },
+              { backgroundColor: colors.backdrop, opacity },
             ]}
           />
         </TouchableWithoutFeedback>
         <SafeAreaView style={styles.wrapper}>
           <Surface
             style={
-              [
-                { opacity: this.state.opacity },
-                styles.content,
-                contentContainerStyle,
-              ] as StyleProp<ViewStyle>
+              [{ opacity }, styles.content, contentContainerStyle] as StyleProp<
+                ViewStyle
+              >
             }
           >
             {children}

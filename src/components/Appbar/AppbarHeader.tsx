@@ -28,11 +28,6 @@ type Props = React.ComponentProps<typeof Appbar> & {
    */
   statusBarHeight?: number;
   /**
-   * Pass `true` if you want Appbar to use theme primary color even in dark mode.
-   * By default in dark mode Appbar use surface color.
-   */
-  primary?: boolean;
-  /**
    * Content of the header.
    */
   children: React.ReactNode;
@@ -66,9 +61,9 @@ type Props = React.ComponentProps<typeof Appbar> & {
  * export default class MyComponent extends React.Component {
  *   _goBack = () => console.log('Went back');
  *
- *   _onSearch = () => console.log('Searching');
+ *   _handleSearch = () => console.log('Searching');
  *
- *   _onMore = () => console.log('Shown more');
+ *   _handleMore = () => console.log('Shown more');
  *
  *   render() {
  *     return (
@@ -80,8 +75,8 @@ type Props = React.ComponentProps<typeof Appbar> & {
  *           title="Title"
  *           subtitle="Subtitle"
  *         />
- *         <Appbar.Action icon="search" onPress={this._onSearch} />
- *         <Appbar.Action icon="more-vert" onPress={this._onMore} />
+ *         <Appbar.Action icon="search" onPress={this._handleSearch} />
+ *         <Appbar.Action icon="more-vert" onPress={this._handleMore} />
  *       </Appbar.Header>
  *     );
  *   }
@@ -96,21 +91,22 @@ class AppbarHeader extends React.Component<Props> {
       // Don't use default props since we check it to know whether we should use SafeAreaView
       statusBarHeight = APPROX_STATUSBAR_HEIGHT,
       style,
-      primary,
       dark,
       ...rest
     } = this.props;
-    const { dark: isDarkTheme, colors } = rest.theme;
+    const { dark: isDarkTheme, colors, mode } = rest.theme;
     const {
       height = DEFAULT_APPBAR_HEIGHT,
       elevation = 4,
-      backgroundColor = isDarkTheme && !primary
-        ? overlay(4, colors.surface)
-        : colors.primary,
+      backgroundColor: customBackground,
       zIndex = 0,
       ...restStyle
-    } = StyleSheet.flatten(style) || {};
-
+    }: ViewStyle = StyleSheet.flatten(style) || {};
+    const backgroundColor = customBackground
+      ? customBackground
+      : isDarkTheme && mode === 'adaptive'
+      ? overlay(elevation, colors.surface)
+      : colors.primary;
     // Let the user override the behaviour
     const Wrapper =
       typeof this.props.statusBarHeight === 'number' ? View : SafeAreaView;
@@ -136,13 +132,13 @@ class AppbarHeader extends React.Component<Props> {
       >
         {/* $FlowFixMe: There seems to be conflict between Appbar's props and Header's props */}
         <Appbar
+          //@ts-ignore
           style={[
             { height, backgroundColor, marginTop: statusBarHeight },
             styles.appbar,
             restStyle,
           ]}
           dark={dark}
-          primary={primary}
           {...rest}
         />
       </Wrapper>
