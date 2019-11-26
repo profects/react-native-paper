@@ -184,11 +184,20 @@ class TextInput extends React.Component<TextInputProps, State> {
   }
 
   state = {
-    labeled: new Animated.Value(this.props.value ? 0 : 1),
+    labeled: new Animated.Value(
+      (this.props.value !== undefined
+      ? this.props.value
+      : this.props.defaultValue)
+        ? 0
+        : 1
+    ),
     error: new Animated.Value(this.props.error ? 1 : 0),
     focused: false,
     placeholder: '',
-    value: this.props.value || this.props.defaultValue,
+    value:
+      this.props.value !== undefined
+        ? this.props.value
+        : this.props.defaultValue,
     labelLayout: {
       measured: false,
       width: 0,
@@ -202,7 +211,9 @@ class TextInput extends React.Component<TextInputProps, State> {
     if (
       prevState.focused !== this.state.focused ||
       prevState.value !== this.state.value ||
-      this.props.defaultValue
+      // workaround for animated regression for react native > 0.61
+      // https://github.com/callstack/react-native-paper/pull/1440
+      prevState.labelLayout !== this.state.labelLayout
     ) {
       // The label should be minimized if the text input is focused, or has text
       // In minimized mode, the label moves up and becomes small
@@ -398,6 +409,7 @@ class TextInput extends React.Component<TextInputProps, State> {
     return mode === 'outlined' ? (
       <TextInputOutlined
         {...rest}
+        value={this.state.value}
         parentState={this.state}
         innerRef={ref => {
           this.root = ref;
@@ -410,6 +422,7 @@ class TextInput extends React.Component<TextInputProps, State> {
     ) : (
       <TextInputFlat
         {...rest}
+        value={this.state.value}
         parentState={this.state}
         innerRef={ref => {
           this.root = ref;
