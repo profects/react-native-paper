@@ -128,8 +128,8 @@ type State = {
  * export default MyComponent;
  * ```
  */
-class ListAccordion extends React.Component<Props, State> {
-  static displayName = 'List.Accordion';
+class ListAccordionRenderer extends React.Component<Props, State> {
+  static displayName = 'List.AccordionRenderer';
 
   static defaultProps: Partial<Props> = {
     titleNumberOfLines: 1,
@@ -270,4 +270,4 @@ class ListAccordion extends React.Component<Props, State> {
   }
 }
 
-export default withTheme(ListAccordion);
+export default withTheme(ListAccordionRenderer);
