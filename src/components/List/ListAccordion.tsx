@@ -209,7 +209,7 @@ class ListAccordion extends React.Component<Props, State> {
                 accessibilityComponentType="button"
                 accessibilityRole="button"
               >
-                <View style={styles.row} pointerEvents="none">
+                <View style={styles.row}>
                   {left
                     ? left({
                         color: expanded
