@@ -27,6 +27,10 @@ type Props = {
    */
   left?: (props: { color: string }) => React.ReactNode;
   /**
+   * Callback which returns a React element to display on the right side.
+   */
+  right?: (props: { color: string }) => React.ReactNode;
+  /**
    * Whether the accordion is expanded
    * If this prop is provided, the accordion will behave as a "controlled component".
    * You'll need to update this prop when you want to toggle the component or on `onPress`.
@@ -155,6 +159,7 @@ class ListAccordionRenderer extends React.Component<Props, State> {
   render() {
     const {
       left,
+      right,
       children,
       theme,
       titleStyle,
@@ -232,6 +237,13 @@ class ListAccordionRenderer extends React.Component<Props, State> {
                         ],
                       })}
                   </View>
+                  {right
+                    ? right({
+                        color: expanded
+                          ? theme.colors.primary
+                          : descriptionColor,
+                      })
+                    : null}
                   <View
                     style={[
                       styles.item,
