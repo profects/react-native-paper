@@ -1,6 +1,9 @@
 // @component ./ListAccordion.tsx
 export { default as Accordion } from './ListAccordion';
 
+// @component ./ListAccordionRenderer.tsx
+export { default as AccordionRenderer } from './ListAccordionRenderer';
+
 // @component ./ListAccordionGroup.tsx
 export { default as AccordionGroup } from './ListAccordionGroup';
 

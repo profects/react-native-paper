@@ -1,18 +1,11 @@
 import color from 'color';
 import * as React from 'react';
-import {
-  View,
-  ViewStyle,
-  StyleSheet,
-  StyleProp,
-  TextStyle,
-} from 'react-native';
+import { View, ViewStyle, StyleProp, TextStyle } from 'react-native';
 import TouchableRipple from '../TouchableRipple';
 import Icon from '../Icon';
-import Text from '../Typography/Text';
 import { withTheme } from '../../core/theming';
 import { Theme } from '../../types';
-
+import { styles } from './ListAccordion';
 import {
   ListAccordionGroupContext,
   ListAccordionGroupContextType,
@@ -22,11 +15,13 @@ type Props = {
   /**
    * Title text for the list accordion.
    */
-  title: React.ReactNode;
+  renderTitle: (props: { style: StyleProp<TextStyle> }) => React.ReactNode;
   /**
    * Description text for the list accordion.
    */
-  description?: React.ReactNode;
+  renderDescription: (props: {
+    style: StyleProp<TextStyle>;
+  }) => React.ReactNode;
   /**
    * Callback which returns a React element to display on the left side.
    */
@@ -160,14 +155,12 @@ class ListAccordion extends React.Component<Props, State> {
   render() {
     const {
       left,
-      title,
-      description,
       children,
       theme,
       titleStyle,
       descriptionStyle,
-      titleNumberOfLines,
-      descriptionNumberOfLines,
+      renderDescription,
+      renderTitle,
       style,
       id,
     } = this.props;
@@ -218,37 +211,31 @@ class ListAccordion extends React.Component<Props, State> {
                       })
                     : null}
                   <View style={[styles.item, styles.content]}>
-                    <Text
-                      numberOfLines={titleNumberOfLines}
-                      style={[
+                    {renderTitle({
+                      style: [
                         styles.title,
                         {
                           color: expanded ? theme.colors.primary : titleColor,
                         },
                         titleStyle,
-                      ]}
-                    >
-                      {title}
-                    </Text>
-                    {description && (
-                      <Text
-                        numberOfLines={descriptionNumberOfLines}
-                        style={[
+                      ],
+                    })}
+
+                    {renderDescription &&
+                      renderDescription({
+                        style: [
                           styles.description,
                           {
                             color: descriptionColor,
                           },
                           descriptionStyle,
-                        ]}
-                      >
-                        {description}
-                      </Text>
-                    )}
+                        ],
+                      })}
                   </View>
                   <View
                     style={[
                       styles.item,
-                      description ? styles.multiline : undefined,
+                      renderDescription ? styles.multiline : undefined,
                     ]}
                   >
                     <Icon
@@ -282,36 +269,5 @@ class ListAccordion extends React.Component<Props, State> {
     );
   }
 }
-
-export const styles = StyleSheet.create({
-  container: {
-    padding: 8,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  multiline: {
-    height: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 16,
-  },
-  description: {
-    fontSize: 14,
-  },
-  item: {
-    margin: 8,
-  },
-  child: {
-    paddingLeft: 64,
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
 
 export default withTheme(ListAccordion);
