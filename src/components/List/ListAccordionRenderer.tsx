@@ -53,6 +53,10 @@ type Props = {
    */
   style?: StyleProp<ViewStyle>;
   /**
+   * Style that is passed to the wrapping row element.
+   */
+  rowStyle?: StyleProp<ViewStyle>;
+  /**
    * Style that is passed to Title element.
    */
   titleStyle?: StyleProp<TextStyle>;
@@ -167,6 +171,7 @@ class ListAccordionRenderer extends React.Component<Props, State> {
       renderDescription,
       renderTitle,
       style,
+      rowStyle,
       id,
     } = this.props;
     const titleColor = color(theme.colors.text)
@@ -207,7 +212,7 @@ class ListAccordionRenderer extends React.Component<Props, State> {
                 accessibilityComponentType="button"
                 accessibilityRole="button"
               >
-                <View style={styles.row}>
+                <View style={[styles.row, rowStyle]}>
                   {left
                     ? left({
                         color: expanded
