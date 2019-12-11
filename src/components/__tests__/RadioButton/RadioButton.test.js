@@ -1,14 +1,22 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { RadioButtonContext } from '../RadioButtonGroup.tsx';
-import RadioButton from '../RadioButton.tsx';
+import { RadioButtonContext } from '../../RadioButton/RadioButtonGroup';
+import RadioButton from '../../RadioButton/RadioButton';
 
 describe('RadioButton', () => {
   afterEach(() => jest.resetModules());
 
   describe('on default platform', () => {
     beforeAll(() => {
-      jest.doMock('Platform', () => ({ select: objs => objs.default }));
+      jest.mock('react-native', () => {
+        const RN = jest.requireActual('react-native');
+
+        RN.Platform = () => ({
+          select: objs => objs.default,
+        });
+
+        return RN;
+      });
     });
 
     it('renders properly', () => {
@@ -20,7 +28,15 @@ describe('RadioButton', () => {
 
   describe('on ios platform', () => {
     beforeAll(() => {
-      jest.doMock('Platform', () => ({ select: objs => objs.ios }));
+      jest.mock('react-native', () => {
+        const RN = jest.requireActual('react-native');
+
+        RN.Platform = () => ({
+          select: objs => objs.ios,
+        });
+
+        return RN;
+      });
     });
 
     it('renders properly', () => {
