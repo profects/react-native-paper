@@ -77,7 +77,11 @@ let Card = /** @class */ (() => {
             const siblings = React.Children.map(children, child => React.isValidElement(child) && child.type
                 ? child.type.displayName
                 : null);
-            return (React.createElement(Surface, Object.assign({ style: [{ borderRadius: roundness, elevation }, style] }, rest),
+            return (React.createElement(Surface
+            //@ts-ignore
+            , Object.assign({ 
+                //@ts-ignore
+                style: [{ borderRadius: roundness, elevation }, style] }, rest),
                 React.createElement(TouchableWithoutFeedback, { delayPressIn: 0, disabled: !(onPress || onLongPress), onLongPress: onLongPress, onPress: onPress, onPressIn: onPress ? this.handlePressIn : undefined, onPressOut: onPress ? this.handlePressOut : undefined, testID: testID, accessible: accessible },
                     React.createElement(View, { style: styles.innerContainer }, React.Children.map(children, (child, index) => React.isValidElement(child)
                         ? React.cloneElement(child, {
