@@ -1,0 +1,82 @@
+import * as React from 'react';
+import { Platform } from 'react-native';
+import RadioButtonGroup from './RadioButtonGroup';
+import RadioButtonAndroid from './RadioButtonAndroid';
+import RadioButtonIOS from './RadioButtonIOS';
+import RadioButtonItem from './RadioButtonItem';
+import { withTheme } from '../../core/theming';
+/**
+ * Radio buttons allow the selection a single option from a set.
+ *
+ * <div class="screenshots">
+ *   <figure>
+ *     <img src="screenshots/radio-enabled.android.png" />
+ *     <figcaption>Android (enabled)</figcaption>
+ *   </figure>
+ *   <figure>
+ *     <img src="screenshots/radio-disabled.android.png" />
+ *     <figcaption>Android (disabled)</figcaption>
+ *   </figure>
+ *   <figure>
+ *     <img src="screenshots/radio-enabled.ios.png" />
+ *     <figcaption>iOS (enabled)</figcaption>
+ *   </figure>
+ *   <figure>
+ *     <img src="screenshots/radio-disabled.ios.png" />
+ *     <figcaption>iOS (disabled)</figcaption>
+ *   </figure>
+ * </div>
+ *
+ * ## Usage
+ * ```js
+ * import * as React from 'react';
+ * import { View } from 'react-native';
+ * import { RadioButton } from 'react-native-paper';
+ *
+ * export default class MyComponent extends React.Component {
+ *   state = {
+ *     checked: 'first',
+ *   };
+ *
+ *   render() {
+ *     const { checked } = this.state;
+ *
+ *     return (
+ *       <View>
+ *         <RadioButton
+ *           value="first"
+ *           status={checked === 'first' ? 'checked' : 'unchecked'}
+ *           onPress={() => { this.setState({ checked: 'first' }); }}
+ *         />
+ *         <RadioButton
+ *           value="second"
+ *           status={checked === 'second' ? 'checked' : 'unchecked'}
+ *           onPress={() => { this.setState({ checked: 'second' }); }}
+ *         />
+ *       </View>
+ *     );
+ *   }
+ * }
+ * ```
+ */
+let RadioButton = /** @class */ (() => {
+    class RadioButton extends React.Component {
+        render() {
+            const Button = Platform.select({
+                default: RadioButtonAndroid,
+                ios: RadioButtonIOS,
+            });
+            return React.createElement(Button, Object.assign({}, this.props));
+        }
+    }
+    // @component ./RadioButtonGroup.tsx
+    RadioButton.Group = RadioButtonGroup;
+    // @component ./RadioButtonAndroid.tsx
+    RadioButton.Android = RadioButtonAndroid;
+    // @component ./RadioButtonIOS.tsx
+    RadioButton.IOS = RadioButtonIOS;
+    // @component ./RadioButtonItem.tsx
+    RadioButton.Item = RadioButtonItem;
+    return RadioButton;
+})();
+export default withTheme(RadioButton);
