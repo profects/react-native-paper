@@ -1,6 +1,12 @@
 import color from 'color';
 import * as React from 'react';
-import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TextStyle,
+  ViewStyle,
+  StyleProp,
+} from 'react-native';
 import Icon, { IconSource } from '../Icon';
 import TouchableRipple from '../TouchableRipple';
 import Text from '../Typography/Text';
@@ -13,6 +19,10 @@ type Props = {
    * Title text for the `MenuItem`.
    */
   title: React.ReactNode;
+  /**
+   * Description text for the `MenuItem`.
+   */
+  description: React.ReactNode;
   /**
    * Icon to display for the `MenuItem`.
    */
@@ -30,18 +40,57 @@ type Props = {
    */
   theme: Theme;
   style?: StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
+  /**
+   * TestID used for testing purposes
+   */
+  testID?: string;
 };
 
 /**
  * A component to show a single list item inside a Menu.
  *
+ * <div class="screenshots">
+ *   <figure>
+ *     <img class="medium" src="screenshots/menu-item.png" />
+ *   </figure>
+ * </div>
+ *
+ * ## Usage
+ * ```js
+ * import * as React from 'react';
+ * import { View } from 'react-native';
+ * import { Menu } from 'react-native-paper';
+ *
+ * const MyComponent = () => (
+ *   <View style={{ flex: 1 }}>
+ *     <Menu.Item icon="redo" onPress={() => {}} title="Redo" />
+ *     <Menu.Item icon="undo" onPress={() => {}} title="Undo" />
+ *     <Menu.Item icon="content-cut" onPress={() => {}} title="Cut" disabled />
+ *     <Menu.Item icon="content-copy" onPress={() => {}} title="Copy" disabled />
+ *     <Menu.Item icon="content-paste" onPress={() => {}} title="Paste" />
+ *   </View>
+ * );
+ *
+ * export default MyComponent;
+ * ```
  */
 
 class MenuItem extends React.Component<Props> {
   static displayName = 'Menu.Item';
 
   render() {
-    const { icon, title, description, disabled, onPress, theme, style } = this.props;
+    const {
+      icon,
+      title,
+      description,
+      disabled,
+      onPress,
+      theme,
+      style,
+      testID,
+      titleStyle,
+    } = this.props;
 
     const disabledColor = color(theme.dark ? white : black)
       .alpha(0.32)
@@ -74,6 +123,7 @@ class MenuItem extends React.Component<Props> {
         style={[styles.container, style]}
         onPress={onPress}
         disabled={disabled}
+        testID={testID}
       >
         <View style={styles.row}>
           {icon ? (
@@ -91,11 +141,11 @@ class MenuItem extends React.Component<Props> {
           >
             <Text
               numberOfLines={1}
-              style={[styles.title, { color: titleColor }]}
+              style={[styles.title, { color: titleColor }, titleStyle]}
             >
               {title}
             </Text>
- {description ? (
+            {description ? (
               <Text
                 numberOfLines={3}
                 style={[
@@ -121,9 +171,11 @@ const iconWidth = 40;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
+    paddingHorizontal: 8,
     minWidth,
     maxWidth,
+    height: 48,
+    justifyContent: 'center',
   },
   row: {
     flexDirection: 'row',
@@ -134,8 +186,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
   },
+  description: {},
   item: {
-    margin: 8,
+    marginHorizontal: 8,
   },
   content: {
     justifyContent: 'center',

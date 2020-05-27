@@ -26,7 +26,7 @@ export { default as Banner } from './components/Banner';
 export { default as BottomNavigation } from './components/BottomNavigation';
 export { default as Button } from './components/Button';
 export { default as Card } from './components/Card/Card';
-export { default as Checkbox } from './components/Checkbox';
+export { default as Checkbox } from './components/Checkbox/Checkbox';
 export { default as Chip } from './components/Chip';
 export { default as DataTable } from './components/DataTable/DataTable';
 export { default as Dialog } from './components/Dialog/Dialog';
@@ -46,9 +46,7 @@ export { default as Switch } from './components/Switch';
 export { default as Appbar } from './components/Appbar/Appbar';
 export { default as TouchableRipple } from './components/TouchableRipple';
 export { default as TextInput } from './components/TextInput/TextInput';
-export {
-  default as ToggleButton,
-} from './components/ToggleButton/ToggleButton';
+export { default as ToggleButton } from './components/ToggleButton/ToggleButton';
 
 export { default as Caption } from './components/Typography/Caption';
 export { default as Headline } from './components/Typography/Headline';

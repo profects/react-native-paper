@@ -52,6 +52,19 @@ const data: Data[] = [
       'https://play.google.com/store/apps/details?id=in.micy.racecalendar',
     ios: 'https://apps.apple.com/us/app/race-calendar/id1481539104',
   },
+  {
+    color: '#4439A1',
+    name: 'Unicore',
+    image: 'showcase/unicore.png',
+    android: 'https://play.google.com/store/apps/details?id=com.atude.mywam',
+  },
+  {
+    color: '#19402E',
+    name: 'TracksNZ',
+    image: 'showcase/tracksnz.png',
+    android: 'https://play.google.com/store/apps/details?id=in.micy.tracksnz',
+    ios: 'https://apps.apple.com/nz/app/tracks-nz/id1488245855',
+  },
 ];
 
 export default class Showcase extends React.Component<{}> {

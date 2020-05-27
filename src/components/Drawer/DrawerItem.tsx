@@ -7,7 +7,7 @@ import TouchableRipple from '../TouchableRipple';
 import { withTheme } from '../../core/theming';
 import { Theme } from '../../types';
 
-type Props = {
+type Props = React.ComponentPropsWithRef<typeof View> & {
   /**
    * The label text of the item.
    */
@@ -24,6 +24,10 @@ type Props = {
    * Function to execute on press.
    */
   onPress?: () => void;
+  /**
+   * Accessibility label for the button. This is read by the screen reader when the user taps the button.
+   */
+  accessibilityLabel?: string;
   style?: StyleProp<ViewStyle>;
   /**
    * @optional
@@ -34,13 +38,23 @@ type Props = {
 /**
  * A component used to show an action item with an icon and a label in a navigation drawer.
  *
+ * <div class="screenshots">
+ *   <figure>
+ *     <img class="medium" src="screenshots/drawer-item.png" />
+ *   </figure>
+ * </div>
+ *
  * ## Usage
  * ```js
  * import * as React from 'react';
  * import { Drawer } from 'react-native-paper';
  *
  * const MyComponent = () => (
- *   <Drawer.Item label="First Item" />
+ *    <Drawer.Item
+ *      style={{ backgroundColor: '#64ffda' }}
+ *      icon="star"
+ *      label="First Item"
+ *    />
  * );
  *
  * export default MyComponent;
@@ -50,7 +64,16 @@ class DrawerItem extends React.Component<Props> {
   static displayName = 'Drawer.Item';
 
   render() {
-    const { icon, label, active, theme, style, onPress, ...rest } = this.props;
+    const {
+      icon,
+      label,
+      active,
+      theme,
+      style,
+      onPress,
+      accessibilityLabel,
+      ...rest
+    } = this.props;
     const { colors, roundness } = theme;
     const backgroundColor = active
       ? color(colors.primary)
@@ -85,6 +108,7 @@ class DrawerItem extends React.Component<Props> {
           accessibilityComponentType="button"
           accessibilityRole="button"
           accessibilityStates={active ? ['selected'] : []}
+          accessibilityLabel={accessibilityLabel}
         >
           <View style={styles.wrapper}>
             {icon ? (
