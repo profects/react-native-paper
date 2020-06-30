@@ -19,7 +19,7 @@ type Props = {
   /**
    * Description text for the list accordion.
    */
-  renderDescription: (props: {
+  renderDescription?: (props: {
     style: StyleProp<TextStyle>;
   }) => React.ReactNode;
   /**
@@ -231,16 +231,17 @@ class ListAccordionRenderer extends React.Component<Props, State> {
                       ],
                     })}
 
-                    {renderDescription &&
-                      renderDescription({
-                        style: [
-                          styles.description,
-                          {
-                            color: descriptionColor,
-                          },
-                          descriptionStyle,
-                        ],
-                      })}
+                    {renderDescription
+                      ? renderDescription({
+                          style: [
+                            styles.description,
+                            {
+                              color: descriptionColor,
+                            },
+                            descriptionStyle,
+                          ],
+                        })
+                      : null}
                   </View>
                   {right
                     ? right({
