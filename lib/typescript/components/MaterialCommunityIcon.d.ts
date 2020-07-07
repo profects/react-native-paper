@@ -17,5 +17,5 @@ export declare const accessibilityProps: {
     role?: undefined;
     focusable?: undefined;
 };
-declare const defaultIcon: ({ name, color, size, direction, allowFontScaling, }: IconProps) => JSX.Element;
+declare const defaultIcon: ({ name, color, size, allowFontScaling, }: IconProps) => JSX.Element;
 export default defaultIcon;
