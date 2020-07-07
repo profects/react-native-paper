@@ -81,7 +81,7 @@ const defaultIcon = ({
   name,
   color,
   size,
-  // direction,
+  direction,
   allowFontScaling,
 }: IconProps) => (
   <MaterialCommunityIcons
@@ -90,9 +90,9 @@ const defaultIcon = ({
     color={color}
     size={size}
     style={[
-      // {
-      //   transform: [{ scaleX: direction === 'rtl' ? -1 : 1 }],
-      // },
+      {
+        transform: [{ scaleX: direction === 'rtl' ? -1 : 1 }],
+      },
       styles.icon,
     ]}
     pointerEvents="none"
