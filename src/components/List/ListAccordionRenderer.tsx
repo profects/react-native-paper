@@ -4,7 +4,6 @@ import { View, ViewStyle, StyleProp, TextStyle } from 'react-native';
 import TouchableRipple from '../TouchableRipple';
 import Icon from '../Icon';
 import { withTheme } from '../../core/theming';
-import { Theme } from '../../types';
 import { styles } from './ListAccordion';
 import {
   ListAccordionGroupContext,
@@ -47,7 +46,7 @@ type Props = {
   /**
    * @optional
    */
-  theme: Theme;
+  theme: ReactNativePaper.Theme;
   /**
    * Style that is passed to the wrapping TouchableRipple element.
    */

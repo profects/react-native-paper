@@ -101,8 +101,8 @@ class RadioButton extends React.Component<Props> {
   static Item = RadioButtonItem;
 
   render() {
+    // @ts-ignore
     const Button = Platform.select({
-      //@ts-ignore
       default: RadioButtonAndroid,
       ios: RadioButtonIOS,
     });
