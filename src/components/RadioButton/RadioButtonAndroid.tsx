@@ -5,7 +5,7 @@ import { RadioButtonContext, RadioButtonContextType } from './RadioButtonGroup';
 import { handlePress, isChecked } from './utils';
 import TouchableRipple from '../TouchableRipple';
 import { withTheme } from '../../core/theming';
-import { Theme, $RemoveChildren } from '../../types';
+import type { $RemoveChildren } from '../../types';
 
 type Props = $RemoveChildren<typeof TouchableRipple> & {
   style: any;
@@ -36,7 +36,7 @@ type Props = $RemoveChildren<typeof TouchableRipple> & {
   /**
    * @optional
    */
-  theme: Theme;
+  theme: ReactNativePaper.Theme;
 };
 
 type State = {
@@ -80,7 +80,7 @@ class RadioButtonAndroid extends React.Component<Props, State> {
       Animated.timing(this.state.radioAnim, {
         toValue: 1,
         duration: 150 * scale,
-        useNativeDriver: false,
+        useNativeDriver: true,
       }).start();
     } else {
       this.state.borderAnim.setValue(10);
@@ -124,16 +124,10 @@ class RadioButtonAndroid extends React.Component<Props, State> {
             }) === 'checked';
 
           if (disabled) {
-            rippleColor = color(theme.colors.text)
-              .alpha(0.16)
-              .rgb()
-              .string();
+            rippleColor = color(theme.colors.text).alpha(0.16).rgb().string();
             radioColor = theme.colors.disabled;
           } else {
-            rippleColor = color(checkedColor)
-              .fade(0.32)
-              .rgb()
-              .string();
+            rippleColor = color(checkedColor).fade(0.32).rgb().string();
             radioColor = checked ? checkedColor : uncheckedColor;
           }
 
@@ -158,7 +152,7 @@ class RadioButtonAndroid extends React.Component<Props, State> {
                 checked ? 'radiobutton_checked' : 'radiobutton_unchecked'
               }
               accessibilityRole="button"
-              accessibilityStates={disabled ? ['disabled'] : []}
+              accessibilityState={{ disabled }}
               accessibilityLiveRegion="polite"
               style={[styles.container, style]}
             >

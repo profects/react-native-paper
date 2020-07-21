@@ -15,7 +15,6 @@ import CardCover, { CardCover as _CardCover } from './CardCover';
 import CardTitle, { CardTitle as _CardTitle } from './CardTitle';
 import Surface from '../Surface';
 import { withTheme } from '../../core/theming';
-import { Theme } from '../../types';
 
 type Props = React.ComponentProps<typeof Surface> & {
   /**
@@ -38,7 +37,7 @@ type Props = React.ComponentProps<typeof Surface> & {
   /**
    * @optional
    */
-  theme: Theme;
+  theme: ReactNativePaper.Theme;
   /**
    * Pass down testID from card props to touchable
    */
@@ -110,7 +109,7 @@ class Card extends React.Component<Props, State> {
     Animated.timing(this.state.elevation, {
       toValue: 8,
       duration: 150 * scale,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   };
 
@@ -120,7 +119,7 @@ class Card extends React.Component<Props, State> {
       // @ts-ignore
       toValue: this.props.elevation,
       duration: 150 * scale,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   };
 
@@ -147,7 +146,7 @@ class Card extends React.Component<Props, State> {
     );
     return (
       <Surface
-        //@ts-ignore
+        // @ts-ignore
         style={[{ borderRadius: roundness, elevation }, style]}
         {...rest}
       >

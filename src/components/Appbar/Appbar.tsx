@@ -13,7 +13,6 @@ import AppbarHeader, { AppbarHeader as _AppbarHeader } from './AppbarHeader';
 import Surface from '../Surface';
 import { withTheme } from '../../core/theming';
 import { black, white } from '../../styles/colors';
-import { Theme } from '../../types';
 import overlay from '../../styles/overlay';
 
 type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
@@ -28,7 +27,7 @@ type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
   /**
    * @optional
    */
-  theme: Theme;
+  theme: ReactNativePaper.Theme;
   style?: StyleProp<ViewStyle>;
 };
 
@@ -123,7 +122,7 @@ class Appbar extends React.Component<Props> {
       let leftItemsCount = 0;
       let rightItemsCount = 0;
 
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (React.isValidElement(child)) {
           if (child.type === AppbarContent) {
             hasAppbarContent = true;
@@ -148,7 +147,7 @@ class Appbar extends React.Component<Props> {
       >
         {shouldAddLeftSpacing ? <View style={styles.spacing} /> : null}
         {React.Children.toArray(children)
-          .filter(child => child != null && typeof child !== 'boolean')
+          .filter((child) => child != null && typeof child !== 'boolean')
           .map((child, i) => {
             if (
               !React.isValidElement(child) ||

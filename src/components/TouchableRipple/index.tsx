@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import color from 'color';
 import { withTheme } from '../../core/theming';
-import { Theme } from '../../types';
 
 type Props = React.ComponentPropsWithRef<typeof TouchableWithoutFeedback> & {
   /**
@@ -53,7 +52,7 @@ type Props = React.ComponentPropsWithRef<typeof TouchableWithoutFeedback> & {
   /**
    * @optional
    */
-  theme: Theme;
+  theme: ReactNativePaper.Theme;
 };
 
 /**
@@ -206,7 +205,7 @@ class TouchableRipple extends React.Component<Props> {
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        containers.forEach(container => {
+        containers.forEach((container) => {
           // @ts-ignore
           const ripple = container.firstChild;
 
