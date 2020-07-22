@@ -19,6 +19,7 @@ export default class Provider extends React.Component<Props, State> {
     componentWillUnmount(): void;
     private handleAppearanceChange;
     private getTheme;
+    private updateReduceMotionSettingsInfo;
     render(): JSX.Element;
 }
 export {};
