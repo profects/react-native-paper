@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AccessibilityInfo, Appearance, ColorSchemeName } from 'react-native';
+import { Appearance, ColorSchemeName } from 'react-native';
 import { ThemeProvider } from './theming';
 import { Provider as SettingsProvider, Settings } from './settings';
 import MaterialCommunityIcon from '../components/MaterialCommunityIcon';
@@ -25,19 +25,19 @@ export default class Provider extends React.Component<Props, State> {
   };
 
   async componentDidMount() {
-    AccessibilityInfo.addEventListener(
-      'reduceMotionChanged',
-      this.updateReduceMotionSettingsInfo
-    );
-    this.updateReduceMotionSettingsInfo();
+    // AccessibilityInfo.addEventListener(
+    //   'reduceMotionChanged',
+    //   this.updateReduceMotionSettingsInfo
+    // );
+    // this.updateReduceMotionSettingsInfo();
     Appearance?.addChangeListener(this.handleAppearanceChange);
   }
 
   componentWillUnmount() {
-    AccessibilityInfo.removeEventListener(
-      'reduceMotionChanged',
-      this.updateReduceMotionSettingsInfo
-    );
+    // AccessibilityInfo.removeEventListener(
+    //   'reduceMotionChanged',
+    //   this.updateReduceMotionSettingsInfo
+    // );
     Appearance?.removeChangeListener(this.handleAppearanceChange);
   }
 
@@ -69,15 +69,15 @@ export default class Provider extends React.Component<Props, State> {
     }
   };
 
-  private updateReduceMotionSettingsInfo = async () => {
-    try {
-      const reduceMotionEnabled = await AccessibilityInfo.isReduceMotionEnabled();
+  // private updateReduceMotionSettingsInfo = async () => {
+  //   try {
+  //     const reduceMotionEnabled = await AccessibilityInfo.isReduceMotionEnabled();
 
-      this.setState({ reduceMotionEnabled });
-    } catch (err) {
-      console.warn(err);
-    }
-  };
+  //     this.setState({ reduceMotionEnabled });
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
 
   render() {
     const { children, settings } = this.props;
